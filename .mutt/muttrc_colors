@@ -1,0 +1,217 @@
+# vim: filetype=muttrc
+#
+## Color Stuff for Mutt
+#
+
+unmono index  *
+unmono header *
+unmono body   *
+
+uncolor index  *
+uncolor header *
+uncolor body   *
+
+#
+## SAFE DEFAULTS
+#
+
+#color	hdrdefault  blue           black
+#color	quoted      blue           black
+#color	signature   blue           black
+#color	attachment  red            black
+#color	message     brightred      black
+#color	error       brightred      black
+#color	status      brightgreen    blue
+#color	tree        white          black
+#color	normal      white          black
+#color	markers     red            black
+#color	search      white          black
+#color	tilde       brightmagenta  black
+#color	index       blue           black  ~F
+#color	index       red            black  "~N|~O"
+#color	indicator   white          red
+
+#
+##
+### MONO
+##
+#
+
+mono   bold                 bold
+mono   underline            underline
+mono   indicator            reverse
+mono   error                bold
+mono   body                 bold       "^gpg: Good signature"
+mono   body                 bold       "^gpg: BAD signature from.*"
+
+##
+#
+# This scheme is based on basic 16 terminal colors being set to "solarized".
+# Dev table of solarized colors found below.
+#
+##
+
+#
+##
+### BASIC
+##
+#
+
+color  indicator   color8   color3
+color  normal      color12  color8
+color  error       color1   color8
+color  tilde       color0   color8
+color  message     color6   color8
+color  attachment  color7   color8
+color  search      color13  color8
+color  tree        color3   color8
+color  hdrdefault  color10  color8
+color  quoted      color4   color8
+color  quoted1     color6   color8
+color  quoted2     color3   color8
+color  quoted3     color1   color8
+color  quoted4     color9   color8
+color  signature   color10  color8
+color  bold        color15  color8
+color  underline   color0   color8
+color  status      color11  color0
+color  markers     color1   color7
+
+#  SOLARIZED HEX     16/8 TERMCOL  XTERM/HEX   L*A*B      RGB         HSB
+#  --------- ------- ---- -------  ----------- ---------- ----------- -----------
+#  base03    #002b36  8/4 brblack  234 #1c1c1c 15 -12 -12   0  43  54 193 100  21  backg
+#  base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26  hilite bg
+#  base01    #586e75 10/7 brgreen  240 #585858 45 -07 -07  88 110 117 194  25  46  2nd txt
+#  base00    #657b83 11/7 bryellow 241 #626262 50 -07 -07 101 123 131 195  23  51
+#  base0     #839496 12/6 brblue   244 #808080 60 -06 -03 131 148 150 186  13  59  1st txt
+#  base1     #93a1a1 14/4 brcyan   245 #8a8a8a 65 -05 -02 147 161 161 180   9  63  emphas
+#  base2     #eee8d5  7/7 white    254 #e4e4e4 92 -00  10 238 232 213  44  11  93
+#  base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 246 227  44  10  99
+#  yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
+#  orange    #cb4b16  9/3 brred    166 #d75f00 50  50  55 203  75  22  18  89  80
+#  red       #d30102  1/1 red      124 #af0000 45  70  60 211   1   2   0  99  83
+#  magenta   #d33682  5/5 magenta  125 #af005f 50  65 -05 211  54 130 331  74  83
+#  violet    #6c71c4 13/5 brmagenta 61 #5f5faf 50  15 -45 108 113 196 237  45  77
+#  blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
+#  cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
+#  green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
+
+#
+##
+### HIGHLIGHTS
+##
+#
+
+#
+## HEADER
+#
+
+color  header      color10  color8     "^"
+color  header      color2   color8     "^(From):? "
+color  header      color3   color8     "^(Date): "
+color  header      color4   color8     "^(Subject): "
+
+#
+## BODY
+#
+
+# MEMEME
+color body         color3   color8     "($my_x_name|$my_x_mail)"
+
+# URL hashtagnasty
+color  body        color5   color8     "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]"
+
+#
+## INDEX
+#
+
+# MEMEME
+#color index        color3       color8        "~b \"phil(_g|\!| gregory| gold)|pgregory\" !~N !~T !~F !~p !~P"
+#color index         J_cream        color15       "~b \"phil(_g|\!| gregory| gold)|pgregory\" ~N !~T !~F !~p !~P"
+#color index        color3      color6        "~b \"phil(_g|\!| gregory| gold)|pgregory\" ~T !~F !~p !~P"
+#color index        color3       J_magent        "~b \"phil(_g|\!| gregory| gold)|pgregory\" ~F !~p !~P"
+#color index         J_magent        color8        "~x \"(mithrandir|aragorn)\\.aperiodic\\.net|thorin\\.hillmgt\\.com\" !~N !~T !~F !~p !~P"
+#color index         J_magent       color15       "~x \"(mithrandir|aragorn)\\.aperiodic\\.net|thorin\\.hillmgt\\.com\" ~N !~T !~F !~p !~P"
+#color index         J_magent       color6        "~x \"(mithrandir|aragorn)\\.aperiodic\\.net|thorin\\.hillmgt\\.com\" ~T !~F !~p !~P"
+#color index         J_magent        color5        "~x \"(mithrandir|aragorn)\\.aperiodic\\.net|thorin\\.hillmgt\\.com\" ~F !~p !~P"
+
+# FLAGS
+#color index         color5        color8        "~D(!~p|~p)"               # deleted
+#color index         color0        color8        ~F                         # flagged
+#color index        color9       color8        ~=                         # duplicate messages
+#color index         color10        color8        "~A!~N!~T!~p!~Q!~F!~D!~P"  # the rest
+#color index         J_base          color8        "~A~N!~T!~p!~Q!~F!~D"      # the rest, new
+color  index       color5   color8     "~A"                          # all messages
+color  index       color9   color8     "~E"                          # expired messages
+color  index       color4   color8     "~N"                          # new messages
+color  index       color4   color8     "~O"                          # old messages
+color  index       color13  color8     "~Q"                          # messages that have been replied to
+color  index       color10  color8     "~R"                          # read messages
+color  index       color4   color8     "~U"                          # unread messages
+color  index       color4   color8     "~U~$"                        # unread, unreferenced messages
+color  index       color11  color8     "~v"                          # messages part of a collapsed thread
+color  index       color11  color8     "~P"                          # messages from me
+color  index       color6   color8     "~p!~F"                       # messages to me
+color  index       color6   color8     "~N~p!~F"                     # new messages to me
+color  index       color6   color8     "~U~p!~F"                     # unread messages to me
+color  index       color10  color8     "~R~p!~F"                     # messages to me
+color  index       color5   color8     "~F"                          # flagged messages
+color  index       color5   color8     "~F~p"                        # flagged messages to me
+color  index       color5   color8     "~N~F"                        # new flagged messages
+color  index       color5   color8     "~N~F~p"                      # new flagged messages to me
+color  index       color5   color8     "~U~F~p"                      # new flagged messages to me
+color  index       color0   color5     "~D"                          # deleted messages
+color  index       color14  color8     "~v~(!~N)"                    # collapsed thread with no unread
+color  index       color3   color8     "~v~(~N)"                     # collapsed thread with some unread
+color  index       color2   color8     "~N~v~(~N)"                   # collapsed thread with unread parent
+# statusbg used to indicated flagged when foreground color shows other status
+# for collapsed thread
+color  index       color5   color0     "~v~(~F)!~N"                  # collapsed thread with flagged, no unread
+color  index       color3   color0     "~v~(~F~N)"                   # collapsed thread with some unread & flagged
+color  index       color2   color0     "~N~v~(~F~N)"                 # collapsed thread with unread parent & flagged
+color  index       color2   color0     "~N~v~(~F)"                   # collapsed thread with unread parent, no unread inside, but some flagged
+color  index       color6   color0     "~v~(~p)"                     # collapsed thread with unread parent, no unread inside, some to me directly
+color  index       color3   color5     "~v~(~D)"                     # thread with deleted (doesn't differentiate between all or partial)
+#color index        color3       color8        "~(~N)"                    # messages in threads with some unread
+#color index        color2        color8        "~S"                       # superseded messages
+color index        color5   color8     "~T"                          # tagged messages
+#color index        color9       color5        "~="                       # duplicated messages
+
+color index        color3   color8     "%f _T"                          # tagged messages
+
+#
+## UNUSED
+#
+
+#?#  color body         color14       color8        "[;:][-o][)/(|]"    # emoticons
+#?#  color body         color14       color8        "[;:][)(|]"         # emoticons
+#?#  color body         color14       color8        "[*]?((N)?ACK|CU|LOL|SCNR|BRB|BTW|CWYL|\
+#?#                                                       |FWIW|vbg|GD&R|HTH|HTHBE|IMHO|IMNSHO|\
+#?#                                                       |IRL|RTFM|ROTFL|ROFL|YMMV)[*]?"
+#?#  color body         color14       color8        "[ ][*][^*]*[*][ ]?" # more emoticon?
+#?#  color body         color14       color8        "[ ]?[*][^*]*[*][ ]" # more emoticon?
+## pgp
+#?#  color body          color5        color8        "(BAD signature)"
+#?#  color body         color6        color8        "(Good signature)"
+#?#  color body          color8        color8        "^gpg: Good signature .*"
+#?#  color body          color11        color8        "^gpg: "
+#?#  color body          color11        color5        "^gpg: BAD signature from.*"
+# and a heavy handed email regex
+#color body          J_magent        color8        "((@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]),)*@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]):)?[0-9a-z_.+%$-]+@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\])"
+# Various smilies and the like
+#color body         color15       color8        "<[Gg]>"                            # <g>
+#color body         color15       color8        "<[Bb][Gg]>"                        # <bg>
+#color body         color3       color8        " [;:]-*[})>{(<|]"                  # :-) etc...
+# *bold*
+#color body         color4        color8        "(^|[[:space:][:punct:]])\\*[^*]+\\*([[:space:][:punct:]]|$)"
+#mono  body          bold                            "(^|[[:space:][:punct:]])\\*[^*]+\\*([[:space:][:punct:]]|$)"
+# _underline_
+#color body         color4        color8        "(^|[[:space:][:punct:]])_[^_]+_([[:space:][:punct:]]|$)"
+#mono  body          underline                       "(^|[[:space:][:punct:]])_[^_]+_([[:space:][:punct:]]|$)"
+# /italic/  (Sometimes gets directory names)
+#color body        color4        color8        "(^|[[:space:][:punct:]])/[^/]+/([[:space:][:punct:]]|$)"
+#mono body          underline                       "(^|[[:space:][:punct:]])/[^/]+/([[:space:][:punct:]]|$)"
+# Border lines.
+#color body         color4        color8        "( *[-+=#*~_]){6,}"
+
+source `I="${HOME}/.mutt/muttrc_colors_local"; [ -s "$I" ] || I=/dev/null; echo "$I"`
