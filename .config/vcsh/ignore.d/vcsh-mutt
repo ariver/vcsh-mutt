@@ -1,6 +1,7 @@
 /*
 !/.mutt*
 /.mutt/hdr.d
+/.mutt/hst
 /.mutt/hst.d
 /.mutt/msg.d
 /.mutt/sig.d
