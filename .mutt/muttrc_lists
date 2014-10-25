@@ -1,0 +1,11 @@
+# vim: filetype=muttrc
+#
+# LISTs & SUBSCRIBEs for Mutt
+#
+
+unlists *
+unsubscribe *
+
+lists -group $my_g_external_dsts lists.debian.org
+
+source `I="${HOME}/.mutt/muttrc_lists_local"; [ -s "$I" ] || I=/dev/null; echo "$I"`

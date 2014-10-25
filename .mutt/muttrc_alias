@@ -1,0 +1,8 @@
+# vim: filetype=muttrc
+#
+## ALIASes for Mutt
+#
+
+unalias *
+
+source `I="${HOME}/.mutt/muttrc_alias_local"; [ -s "$I" ] || I=/dev/null; echo "$I"`

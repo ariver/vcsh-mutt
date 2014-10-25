@@ -1,0 +1,22 @@
+# vim: filetype=muttrc
+#
+## Configuration file for Mutt
+#
+
+source "${HOME}/.mutt/muttrc_sets"
+
+source "${HOME}/.mutt/muttrc_mailboxes"
+source "${HOME}/.mutt/muttrc_headers"
+
+source "${HOME}/.mutt/muttrc_attachments"
+
+source "${HOME}/.mutt/muttrc_group"
+source "${HOME}/.mutt/muttrc_alias"
+source "${HOME}/.mutt/muttrc_lists"
+
+source "${HOME}/.mutt/muttrc_score"
+source "${HOME}/.mutt/muttrc_keys"
+
+source "${HOME}/.mutt/muttrc_hooks"
+
+source "${HOME}/.mutt/muttrc_colors"

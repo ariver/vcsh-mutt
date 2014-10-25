@@ -1,0 +1,32 @@
+# vim: filetype=muttrc
+#
+## Header Stuff for Mutt
+#
+
+# Reset
+ignore *
+unhdr_order *
+unmy_hdr *
+
+# Show these headers..
+unignore from: \
+            date reply-by \
+            from to cc list-id \
+            user-agent x-mailer \
+            x-url x-originating-ip x-message-flag \
+            subject
+
+# ..and show them in this order..
+hdr_order \
+            date reply-by \
+            from to cc list-id \
+            user-agent x-mailer \
+            x-url x-originating-ip x-message-flag \
+            subject
+
+# ..and throw in these when composing messages.
+my_hdr Reply-By: Tue, 31 Dec 2999 23:59:59 -0500
+my_hdr X-Auto-Response-Suppress: DR, NDR, RN, NRN, OOF, AutoReply
+my_hdr X-Message-Flag: Huh?
+
+source `I="${HOME}/.mutt/muttrc_headers_local"; [ -s "$I" ] || I=/dev/null; echo "$I"`

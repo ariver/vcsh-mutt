@@ -1,0 +1,10 @@
+# vim: filetype=muttrc
+#
+## Hook Stuff for Mutt
+#
+
+unhook *		# remove all hooks
+
+folder-hook . 'set record=^; exec collapse-all'
+
+source `I="${HOME}/.mutt/muttrc_hooks_local"; [ -s "$I" ] || I=/dev/null; echo "$I"`

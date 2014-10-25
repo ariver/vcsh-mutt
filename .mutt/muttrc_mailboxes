@@ -1,0 +1,10 @@
+# vim: filetype=muttrc
+#
+## MAILBOXES for Mutt
+#
+
+unmailboxes *
+
+mailboxes "+INBOX" "+Drafts"
+
+source `I="${HOME}/.mutt/muttrc_mailboxes_local"; [ -s "$I" ] || I=/dev/null; echo "$I"`

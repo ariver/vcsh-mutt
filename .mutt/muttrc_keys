@@ -1,0 +1,213 @@
+# vim: filetype=muttrc
+#
+## Keyboard Stuff for Mutt
+#
+
+# Custom leader key!
+set my_leader_key=,
+
+#
+# Overrides
+#
+
+macro generic \cl \
+"<enter-command> source \$alias_file<enter><refresh>" \
+"Reload Aliases; Refresh"
+
+#
+# Unbound
+#
+
+# Report What Key is Activated Next
+# ( Useful for finding key(-combos) to use for bind/macro. )
+bind index,pager "$my_leader_key""$my_leader_key"k what-key
+
+#
+# Macro Sets
+#
+
+#
+# Navigation
+#
+
+# Toggle Display of Mailbox Selection ( like "mutt -y" )
+# ( Key "y" not bound by default in index/pager/browser. )
+macro index,pager y "<change-folder>?" "Toggle Display of Mailbox Selection"
+macro browser     y "<exit>"           "Toggle Display of Mailbox Selection"
+
+#
+# Pipes
+#
+
+macro index,pager,attach,compose "$my_leader_key"pu \
+"\
+<enter-command> set my_resolve=\$resolve resolve=no<enter>\
+<enter-command> set my_wait_key=\$wait_key wait_key=no<enter>\
+<enter-command> set my_pipe_decode=\$pipe_decode pipe_decode=yes<enter>\
+<pipe-message> urlview<enter>\
+<enter-command> set pipe_decode=\$my_pipe_decode nomy_pipe_decode<enter>\
+<enter-command> set wait_key=\$my_wait_key nomy_wait_key<enter>\
+<enter-command> set resolve=\$my_resolve nomy_resolve<enter>\
+" \
+"Extract URLs"
+
+macro index,pager "$my_leader_key"pw \
+"\
+<enter-command> set my_pipe_decode=\$pipe_decode pipe_decode=no<enter>\
+<enter-command> set my_wait_key=\$wait_key wait_key=no<enter>\
+<pipe-message> viewhtmlmsg<enter>\
+<enter-command> set pipe_decode=\$my_pipe_decode nomy_pipe_decode<enter>\
+<enter-command> set wait_key=\$my_wait_key nomy_wait_key<enter>\
+" \
+"View HTML Message in Default Browser"
+
+macro index,pager "$my_leader_key"pW \
+"\
+<enter-command> set my_pipe_decode=\$pipe_decode pipe_decode=no<enter>\
+<enter-command> set my_wait_key=\$wait_key wait_key=no<enter>\
+<pipe-message> viewhtmlmsg -s<enter>\
+<enter-command> set pipe_decode=\$my_pipe_decode nomy_pipe_decode<enter>\
+<enter-command> set wait_key=\$my_wait_key nomy_wait_key<enter>\
+" \
+"View Safe-HTML Message in Default Browser"
+
+#
+# Affect Tagged Messages or Current Message..
+# ( ref: http://unix.stackexchange.com/questions/102829/mutt-save-message-to-specific-folder )
+#
+
+macro index "$my_leader_key"sa \
+"\
+<enter-command> set my_confirmappend=\$confirmappend confirmappend=no<enter>\
+<enter-command> set my_delete=\$delete delete=yes<enter>\
+<enter-command> set my_resolve=\$resolve resolve=no<enter>\
+<tag-prefix><clear-flag>N\
+<tag-prefix><save-message>+Archive<enter>\
+<sync-mailbox>\
+<enter-command> set confirmappend=\$my_confirmappend nomy_confirmappend<enter>\
+<enter-command> set delete=\$my_delete nomy_delete<enter>\
+<enter-command> set resolve=\$my_resolve nomy_resolve<enter>\
+" \
+"Archive Messages"
+
+macro index "$my_leader_key"st \
+"\
+<enter-command> set my_confirmappend=\$confirmappend confirmappend=no<enter>\
+<enter-command> set my_delete=\$delete delete=yes<enter>\
+<enter-command> set my_resolve=\$resolve resolve=no<enter>\
+<tag-prefix><clear-flag>N\
+<tag-prefix><save-message>+Trash<enter>\
+<sync-mailbox>\
+<enter-command> set confirmappend=\$my_confirmappend nomy_confirmappend<enter>\
+<enter-command> set delete=\$my_delete nomy_delete<enter>\
+<enter-command> set resolve=\$my_resolve nomy_resolve<enter>\
+" \
+"Trash Messages"
+
+#
+# Limits
+#
+
+macro index "$my_leader_key"l0 \
+"<limit>.<enter>" \
+"Limit: ALL"
+
+macro index "$my_leader_key"l1 \
+"<limit>~( ~n 9- | ~F )<enter>" \
+"Limit: High Priority"
+
+macro index "$my_leader_key"l2 \
+"<limit>~( !( %C $my_g_me !^%C $my_g_me ) %C $my_g_me !~F )<enter>" \
+"Limit: MeMeMe"
+
+macro index "$my_leader_key"l70 \
+"\
+<limit>\
+~( %C $my_g_internal_announcements )\
+!~( ~F )\
+<enter>\
+" \
+"Limit: Internal Announcements"
+
+macro index "$my_leader_key"l80 \
+"\
+<limit>\
+~( %f $my_g_team_bots ) \
+!~( %f $my_g_team ) \
+!~( ~F )\
+<enter>\
+" \
+"Limit: Team Alerts, No Response"
+
+macro index "$my_leader_key"l81 \
+"<limit>~( %C $my_g_team_dsts %f $my_g_team ) !~( ~F )<enter>" \
+"Limit: Team, Responded"
+
+macro index "$my_leader_key"l82 \
+"<limit>~( %C $my_g_team_dsts ) !~( %f $my_g_team ) !~( ~F )<enter>" \
+"Limit: Team, No Response"
+
+macro index "$my_leader_key"l83 \
+"<limit>~( %f $my_g_team ) !~( ~F )<enter>" \
+"Limit: From Team"
+
+macro index "$my_leader_key"l90 \
+"\
+<limit>\
+~( \
+~s \"where\'s\" | ~s wheres | ~s \"where is\" | ~s \"where be\" | \
+~s sick | ~s \" late\"\\> | \
+~s ooo | ~s wfh | ~s eto | ~s vacation | ~s coverage | ~s holiday \
+) \
+!~( ~C github | ~f tickets | ~f confluence )\
+!~( ~F )\
+<enter>\
+" \
+"Limit: Out/Sick/Late/etc"
+
+macro index "$my_leader_key"l91 \
+"\
+<limit>\
+~( ~C \"github(\.$my_m_domain|\.com)\" ) \
+!~( ~F )\
+<enter>\
+" \
+"Limit: Github"
+
+#
+# Custom Wrapping in Pager Display
+#
+
+set my_wrapfilter__="wrap -M -e \"\\|\" -w $((COLUMNS-10)) -H"
+set my_wrapfilter_i="wrap -M -e \"\\|\" -i $((COLUMNS-10)) -H"
+set my_wrapfilter_r="wrap -M -e \"\\|\" -r $((COLUMNS-10)) -H"
+
+macro pager "$my_leader_key"dd \
+"<exit><display-message>" \
+"Default Display"
+
+macro pager "$my_leader_key"dw \
+"\
+<enter-command> set my_display_filter=\$display_filter display_filter='$my_wrapfilter__'<enter>\
+<exit><display-message>\
+<enter-command> set display_filter=\$my_display_filter nomy_display_filter<enter>\
+" \
+"Wrap"
+
+macro pager "$my_leader_key"di \
+"\
+<enter-command> set my_display_filter=\$display_filter display_filter='$my_wrapfilter_i'<enter>\
+<exit><display-message>\
+<enter-command> set display_filter=\$my_display_filter nomy_display_filter<enter>\
+" \
+"Wrap: Indent 1st Paragraph"
+
+macro pager "$my_leader_key"dr \
+"\
+<enter-command> set my_display_filter=\$display_filter display_filter='$my_wrapfilter_r'<enter>\
+<exit><display-message>\
+<enter-command> set display_filter=\$my_display_filter nomy_display_filter<enter>\
+" \
+"Wrap: Respect Line Breaks"
+
+source `I="${HOME}/.mutt/my.d/muttrc_keys_local"; [ -s "$I" ] || I=/dev/null; echo "$I"`

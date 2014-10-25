@@ -1,0 +1,28 @@
+# vim: filetype=muttrc
+#
+## Attachment Stuff for Mutt
+#
+
+unauto_view         *
+unalternative_order *
+unmime_lookup       *
+#unattachments       *
+
+#auto_view text/html
+#auto_view text/calendar
+
+#alternative_order text/calendar text/enriched text/plain text/html text application/postscript image/*
+alternative_order text/enriched text/plain text/html text application/postscript image/*
+
+mime_lookup application/octet-stream
+
+attachments   +A */.*
+attachments   -A text/x-vcard application/pgp.*
+attachments   -A application/x-pkcs7-.*
+attachments   +I text/plain
+attachments   +A text/calendar
+#attachments   +I text/calendar
+attachments   -A message/external-body
+attachments   -I message/external-body
+
+source `I="${HOME}/.mutt/muttrc_attachments_local"; [ -s "$I" ] || I=/dev/null; echo "$I"`

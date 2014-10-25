@@ -1,0 +1,29 @@
+# vim: filetype=muttrc
+#
+## SCOREs for Mutt
+#
+
+unscore *
+
+# Flagged
+score "~F"              64
+
+# From ME
+score "~P"		32
+
+# Replied
+score "~Q"		16
+
+# From Team
+score "%f $my_g_team"	8
+
+# Only to ME from Internal
+score "~( ^%C $my_g_me %C $my_g_me ~f $my_m_domain )"    4
+
+# Only to ME
+score "~( ^%C $my_g_me %C $my_g_me )"    2
+
+# To ME
+score "~p"                1
+
+source `I="${HOME}/.mutt/muttrc_score_local"; [ -s "$I" ] || I=/dev/null; echo "$I"`
