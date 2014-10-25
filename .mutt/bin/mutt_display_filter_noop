@@ -1,0 +1,17 @@
+#! /bin/bash
+
+function mutt_display_filter_noop ()
+{
+
+    declare fnc="${FUNCNAME}"
+
+    declare {tmp_in,tmp_out}=
+
+    tmp_in="$( cat - )"
+    tmp_out="${tmp_in}"
+
+    echo "${tmp_out}"
+
+}
+
+mutt_display_filter_noop ${@:+"${@}"}
