@@ -1,0 +1,35 @@
+# $Id$
+
+#text/html; qlmanage -c public.html -p %s; nametemplate=%s.html
+text/html; elinks -force-html %s; nametemplate=%s.html;
+#text/html; lynx -force_html %s; nametemplate=%s.html
+#text/html; w3m -S -no-mouse -graph -I %{charset} -T text/html %s; nametemplate=%s.html
+
+#
+## TEXT/HTML
+#
+
+#text/html; html2text -style pretty -utf8 -width $((COLUMNS-9)) %s; copiousoutput;
+#text/html; elinks -dump -dump-charset %{charset} -dump-width $((COLUMNS-9)) -force-html %s; nametemplate=%s.html; copiousoutput
+
+#text/html; w3m -S -X -no-mouse -graph -cols $((COLUMNS-9)) -I %{charset} -T text/html; copiousoutput;
+#text/html; w3m -S -X -no-mouse -graph -cols $((COLUMNS-9)) -T text/html; copiousoutput;
+
+#text/html; lynx -display_charset=%{charset} -default_colors -term=xterm-256color -width=$((COLUMNS-9)) -force_html -dump %s; copiousoutput;
+text/html; lynx -display_charset=us-ascii -default_colors -term=xterm-256color -width=$((COLUMNS-9)) -force_html -dump %s; copiousoutput;
+#text/html; lynx -default_colors -term=xterm-256color -width=$((COLUMNS-9)) -force_html -dump %s; copiousoutput;
+
+image/gif; qlmanage -p %s; nametemplate=%s.gif;
+
+image/jpg; qlmanage -p %s; nametemplate=%s.jpg;
+image/jpeg; qlmanage -p %s; nametemplate=%s.jpg;
+
+image/png; qlmanage -p %s; nametemplate=%s.png;
+
+text/calendar; cat; copiousoutput;
+
+application/zip; zip -vT %s; copiousoutput;
+
+#application/pgp-keys; pgp -f < %s ; copiousoutput
+
+application/pdf; open -Wn %s; nametemplate=%s.pdf
