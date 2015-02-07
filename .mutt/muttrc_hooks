@@ -5,6 +5,6 @@
 
 unhook *		# remove all hooks
 
-folder-hook . 'set record=^; exec collapse-all'
+#folder-hook . 'set record=^; exec collapse-all'
 
 source `I="${HOME}/.mutt/muttrc_hooks_local"; [ -s "$I" ] || I=/dev/null; echo "$I"`
