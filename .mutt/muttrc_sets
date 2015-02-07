@@ -6,7 +6,57 @@
 # Reset all variables to system defaults.
 reset all
 
+#
+## Personalization
+#
+# Any confidential information may be put in to the *_local configs.
+#
+
+# Group name for all your addresses.
+set my_g_me="_me"
+
+# Group names for your team addresses (coworkers), distribution-lists, and email robots.
+set my_g_team="_T"
+set my_g_team_dsts="__T"
+set my_g_team_bots="___T"
+
+# Group names for your internal addresses (all coworkers), distribution-lists, and email robots.
+set my_g_internal="_I"
+set my_g_internal_dsts="__I"
+set my_g_internal_bots="___I"
+# Group name for internal announcement sources (separate from robots?).
+set my_g_internal_announcements="__I_announcements"
+
+# Group names for external addresses, distribution-lists, and robots.
+set my_g_external="_E"
+set my_g_external_dsts="__E"
+set my_g_external_bots="___E"
+
+# Requires EMAIL var to be set in shell.
+set my_m_full="${EMAIL}"
+set my_m_local=`echo "${EMAIL%@*}"`
+set my_m_domain=`echo "${EMAIL#*@}"`
+
+# Setup name variables.
+# ( Weird string below is just a place-holder. )
+set my_n_first="Yuok8aa6eegh7ookeipooheikei5oape"
+set my_n_last="Yuok8aa6eegh7ookeipooheikei5oape"
+set my_n_full="$my_n_first $my_n_last"
+
+# Setup nickname, team-name regex strings.
+# ( Weird string below is just a place-holder. )
+set my_x_nick="Yuok8aa6eegh7ookeipooheikei5oape"
+set my_x_team="Yuok8aa6eegh7ookeipooheikei5oape"
+# Setup regex strings to match all-your-names.
+set my_x_name="$my_x_nick|$my_n_first|$my_n_last|$my_n_full|$my_m_local"
+# Setup regex string for your email address.
+set my_x_mail="$my_m_full"
+
 source `I="${HOME}/.mutt/muttrc_sets_local"; [ -s "$I" ] || I=/dev/null; echo "$I"`
+
+#
+## Settings
+#
 
 set attach_format="%u%D%I %t%4n %T%d%> [%m/%M, %e%?C?, %C?, %s] "
 
@@ -35,8 +85,8 @@ set display_filter="${HOME}/.mutt/bin/mutt_display_filter_noop"
 set hdrs=yes
 set header=yes
 set edit_headers=yes
-#set editor='function __test () { date "+%Y-%m-%d %H:%M:%S.%N"; time vim -c "set spell spelllang=en" "${@}"; E="${?}"; date "+%Y-%m-%d %H:%M:%S.%N"; read -n 1; return "${E}"; }; __test'
 set editor='vim -c "set spell spelllang=en"'
+#set editor='function __test () { date "+%Y-%m-%d %H:%M:%S.%N"; time vim -c "set spell spelllang=en" "${@}"; E="${?}"; date "+%Y-%m-%d %H:%M:%S.%N"; read -n 1; return "${E}"; }; __test'
 set fast_reply=yes
 set fcc_attach=yes
 set fcc_clear=yes
@@ -154,9 +204,10 @@ set read_inc=100
 
 set realname="$my_n_full"
 
-set record="+Sent"
+set record="+INBOX"
 
-set reflow_text=yes
+#set reflow_text=yes
+set reflow_text=no
 # set reflow_wrap=78
 #
 # Name: reflow_wrap
@@ -171,6 +222,8 @@ set reflow_text=yes
 # paragraph width relative to the right margin.
 
 # set resolve=no
+
+set reply_regexp='^(\[[a-z0-9:-]+\][ \t]*)?((re([\\[0-9\\]+])*|aw):[ \t]*)?+[ \t]*'
 
 set reverse_alias=yes
 set reverse_name=yes
@@ -201,18 +254,19 @@ set thorough_search=no
 set sleep_time=3
 
 set sort=reverse-threads
+#set sort=threads
 #set sort_aux=reverse-last-date-received
-set sort_aux=last-date-sent
+set sort_aux=last-date-received
 
 # set sort_alias=unsorted
 
-# set sort_re=yes
+set sort_re=yes
 
 set spoolfile="+INBOX"
 
 set status_format="${HOME}/.mutt/bin/mutt_xtitle_stat '[%?b? b:%b? %r%f%?l? %l? %P ] [ %?M?%M/?%m%?n? n:%n?%?u? u:%u?%?d? d:%d?%?t? t:%t?%?F? F:%F?%?p? p:%p? ]<NOXT>%> [ %s/%S ]%?V? >> %V?'|"
 
-# set strict_threads=no
+set strict_threads=yes
 
 set text_flowed=yes
 
