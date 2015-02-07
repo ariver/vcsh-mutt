@@ -6,6 +6,6 @@
 unalternates *
 ungroup *
 
-alternates -group $my_g_me "$my_m_local(\+[0-9A-Za-z_-]+)?@$my_m_domain"
+alternates -group $my_g_me "$my_m_local(\\+[0-9A-Za-z_-]+)?@$my_m_domain"
 
 source `I="${HOME}/.mutt/muttrc_group_local"; [ -s "$I" ] || I=/dev/null; echo "$I"`
