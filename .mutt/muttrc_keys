@@ -120,7 +120,7 @@ macro index "$my_leader_key"l2 \
 "<limit>~( !( %C $my_g_me !^%C $my_g_me ) %C $my_g_me !~F )<enter>" \
 "Limit: MeMeMe"
 
-macro index "$my_leader_key"l70 \
+macro index "$my_leader_key"l60 \
 "\
 <limit>\
 ~( %C $my_g_internal_announcements )\
@@ -129,7 +129,7 @@ macro index "$my_leader_key"l70 \
 " \
 "Limit: Internal Announcements"
 
-macro index "$my_leader_key"l80 \
+macro index "$my_leader_key"l70 \
 "\
 <limit>\
 ~( %f $my_g_team_bots ) \
@@ -139,33 +139,33 @@ macro index "$my_leader_key"l80 \
 " \
 "Limit: Team Alerts, No Response"
 
-macro index "$my_leader_key"l81 \
+macro index "$my_leader_key"l71 \
 "<limit>~( %C $my_g_team_dsts %f $my_g_team ) !~( ~F )<enter>" \
 "Limit: Team, Responded"
 
-macro index "$my_leader_key"l82 \
+macro index "$my_leader_key"l72 \
 "<limit>~( %C $my_g_team_dsts ) !~( %f $my_g_team ) !~( ~F )<enter>" \
 "Limit: Team, No Response"
 
-macro index "$my_leader_key"l83 \
-"<limit>~( %f $my_g_team ) !~( ~F )<enter>" \
-"Limit: From Team"
+macro index "$my_leader_key"l73 \
+"<limit>~( %f $my_g_team ) !~( %C $my_g_team_dsts ) !~( ~F )<enter>" \
+"Limit: From Team, Not to Team Dsts"
 
-macro index "$my_leader_key"l90 \
+macro index "$my_leader_key"l80 \
 "\
 <limit>\
 ~( \
 ~s \"where\'s\" | ~s wheres | ~s \"where is\" | ~s \"where be\" | \
-~s sick | ~s \" late\"\\> | \
-~s ooo | ~s wfh | ~s eto | ~s vacation | ~s coverage | ~s holiday \
+~s '\\<sick\\>' | ~s '\\<late\\>' | \
+~s '\\<ooo\\>' | ~s '\\<wfh\\>' | ~s '\\<eto\\>' | ~s vacation | ~s coverage | ~s holiday \
 ) \
-!~( ~C github | ~f tickets | ~f confluence )\
+!~( ~C github | ~f tickets | ~f confluence ) \
 !~( ~F )\
 <enter>\
 " \
 "Limit: Out/Sick/Late/etc"
 
-macro index "$my_leader_key"l91 \
+macro index "$my_leader_key"l81 \
 "\
 <limit>\
 ~( ~C \"github(\.$my_m_domain|\.com)\" ) \
@@ -174,12 +174,21 @@ macro index "$my_leader_key"l91 \
 " \
 "Limit: Github"
 
+macro index "$my_leader_key"l82 \
+"\
+<limit>\
+~( ~f confluence ) \
+!~( ~F )\
+<enter>\
+" \
+"Limit: Wiki"
+
 #
 # Custom Wrapping in Pager Display
 #
 
 set my_wrapfilter__="wrap -M -e \"\\|\" -w $((COLUMNS-10)) -H"
-set my_wrapfilter_i="wrap -M -e \"\\|\" -i $((COLUMNS-10)) -H"
+set my_wrapfilter_i="wrap -M -e \"\\|\" -i $(($( tput cols )-10)) -H"
 set my_wrapfilter_r="wrap -M -e \"\\|\" -r $((COLUMNS-10)) -H"
 
 macro pager "$my_leader_key"dd \
@@ -210,4 +219,4 @@ macro pager "$my_leader_key"dr \
 " \
 "Wrap: Respect Line Breaks"
 
-source `I="${HOME}/.mutt/my.d/muttrc_keys_local"; [ -s "$I" ] || I=/dev/null; echo "$I"`
+source `I="${HOME}/.mutt/muttrc_keys_local"; [ -s "$I" ] || I=/dev/null; echo "$I"`
